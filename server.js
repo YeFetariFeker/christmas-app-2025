@@ -1,6 +1,7 @@
 /* BUILD SERVER */
 const express = require('express')
 const server = express()
+const router = require('./routes/router')
 const PORT = process.env.PORT || 2025
 
 /* HANDLE SECURITY .. IMPORTING HELMET AND CORS*/
@@ -24,20 +25,8 @@ server.use(cors())
 server.use(express.json())
 server.use(express.urlencoded({ extended: true}))
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+/* LOCALHOST: 2025 */
+server.use('/', router)
 
 
 
