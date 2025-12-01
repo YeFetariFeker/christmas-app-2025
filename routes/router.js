@@ -11,6 +11,8 @@ router.get('/api', (req, res)=> {
 
 })
 
+router.use('/api/actor', require('./api/actorRoutes'))
+
 /* BUILD ERROR PAGE THAT HANDLE ERRORS*/
 router.use((req, res, next)=> {
     res.status(404)

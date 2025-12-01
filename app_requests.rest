@@ -1,0 +1,12 @@
+### GET findAll
+#GET http://localhost:2025/api/actor
+
+### GET findById single actor by id
+#GET http://localhost:2025/api/actor/7
+
+### GET sort/by name
+http://localhost:2025/api/actor/sort/last_name
+
+
+
+
