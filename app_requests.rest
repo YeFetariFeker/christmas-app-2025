@@ -24,7 +24,7 @@
 # GET http://localhost:2025/api/program/sort/title
 
 ### GET PROGRAM RARING
-GET http://localhost:2025/api/program/rating/PG-13
+#GET http://localhost:2025/api/program/rating/PG-13
 
 ### GET PROGRAM RATING
 # GET http://localhost2025/api/program/rating/:rating
@@ -43,7 +43,7 @@ GET http://localhost:2025/api/program/rating/PG-13
 #POST http://localhost:2025/api/program/id/7
 
 ### POST PROGRAM create
-POST http://localhost:2025/api/program/create
+#POST http://localhost:2025/api/program/create
 
 ### GET PROGRAM SEARCH => /search/:column/:value
 #GET  http://localhost:2025/api/program/search?q=elf
@@ -67,8 +67,8 @@ POST http://localhost:2025/api/program/create
 ### GET findById single actor by id
 # GET http://localhost:2025/api/actor/7
 
-###  GET ACTOR FIND ACTOR BY PROGRAM RATING ? /ERROR 404
- #GET http://localhost:2025/api/actor/program/rating/7
+###  GET ACTOR FIND ACTOR BY PROGRAM RATING 
+ GET http://localhost:2025/api/actor/actor_rating
 
 ### GET sort by id for single actor id 7 not working
 #http://localhost:2025/api/actor/sort/1
@@ -80,14 +80,14 @@ POST http://localhost:2025/api/program/create
  #  GET http://localhost:2025/actor-form
  
 # GET ACTOR countAllActor 
-# GET http://localhost:2025/api/actor/count
+#GET http://localhost:2025/api/actor/count
 
 
 
 ###### POST ACTOR  #####
 
-### GET ACTOR search
-#GET  http://localhost:2025/api/actor/search?q=Will
+### GET ACTOR search by first name
+#GET  http://localhost:2025/api/actor/search?q=queen
 
 ### POST ACTOR create
 # POST http://localhost:2025/api/actor/create
@@ -119,7 +119,7 @@ POST http://localhost:2025/api/program/create
  # GET http://localhost:2025/api/actor/count
 
  ### GET DIRECTOR sortByLast_name
- # GET http://localhost:2025/api/director/sort/last_name
+  #GET http://localhost:2025/api/director/sort/last_name
 
 
 #################  GET PRODUCTION TABLE  ################
@@ -128,7 +128,7 @@ POST http://localhost:2025/api/program/create
 # GET http://localhost:2025/api/director
 
 ### GET PROUCTION ID findById single 
-# GET http://localhost:2025/api/director/7
+#GET http://localhost:2025/api/director/7
 
  ### GET DIRECTOR COUNT ALL DIRECTOR  countAll 
  # GET http://localhost:2025/api/actor/count

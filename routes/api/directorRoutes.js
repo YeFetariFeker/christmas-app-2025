@@ -7,6 +7,12 @@ router.get('/', (req, res)=> {
     dao.findAll(req, res, dao.table)
 })
 
+/** FIND PDIRECTOR BY RATING => 
+ * http://localhost:2025/api/director/program/rating/PG-13 **/
+router.get('/rating', (req, res)=> {
+    dao.findByRating(req, res, dao.table)
+})
+
 /** COUNT ALL ACTOR */
 router.get('/count', (req, res) => {    
     dao.countAll(req, res, 'director')  /*count all rows in actor table */
@@ -32,17 +38,16 @@ router.get('/:id', (req, res)=> {
     dao.findById(res, dao.table, req.params.id)
 })
 
-/*http://loclahost:2025/api/actor/create*/ /**** CREATE ACTOR*****/
-router.post('/create', (req, res)=> {
-    dao.create(req, res, dao.table)
-})
+// /*http://loclahost:2025/api/actor/create*/ /**** CREATE ACTOR*****/
+// router.post('/create', (req, res)=> {
+//     dao.create(req, res, dao.table)
+// })
 
-/**** UPDATE ACTOR BY ID *****/ // if not working remove /:id from router.patch'/update/:id'
-router.patch('/update/:id', (req, res)=> {
-    dao.update(req, res, dao.table)
-})
+// /**** UPDATE ACTOR BY ID *****/ // if not working remove /:id from router.patch'/update/:id'
+// router.patch('/update/:id', (req, res)=> {
+//     dao.update(req, res, dao.table)
+// })
 
-/*NEED TO ADD */
-//ROUTER.GET COUNTALL, SEARCH
+
 
 module.exports = router

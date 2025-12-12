@@ -34,8 +34,8 @@ const productionDao = {
 
     },
 
-    /** FIND DIRECTOR BY ID **/
-    findByDirectorFirstName: (req, res)=> {
+    /** FIND DIRECTOR BY ID  http:localhost:2025/api/production/name  **/
+    findByProductionByName: (req, res)=> {
         const { director_id} = req.query
         const sql = `SELECT * FROM actor WHERE director_id = ?;`
         con.execute(sql, [director_id], (error, rows)=> {

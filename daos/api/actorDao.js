@@ -16,23 +16,22 @@ const actorDao = {
         })
     },
 
-    /** GET DIRECTORS FOr PROGRAMS WITH A GIVEN PROGRAM RATING **/
+    /** GET DIRECTORS FOrom PROGRAMS WITH A GIVEN PROGRAM RATING **/
     findActorByProgramRating: (req, res, table)=> {
-        const { rating } = req.query
+        const rating = []
 
         const sql = `
             SELECT a.*
             FROM actor a
             JOIN program_to_actor pa ON a.actor_id = pa.actor_id
-            JOIN program p ON pa.program_id = p.program_id
-            WHERE p.rating = ?;`
+            JOIN program p ON pa.program_id = p.program_rating
+            WHERE p.program_rating = ?;`
             
-            con.query(sql, [rating], (error, rows) => {
-            queryAction(res, error, rows, 'actor')
+            con.execute(sql, rating, (error, rows) => {
+            queryAction(res, error, rows, table)
         })
     }
-
-   
+  
     
 }
 

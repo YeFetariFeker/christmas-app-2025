@@ -8,9 +8,13 @@ router.get('/', (req, res)=> {
 
 })
 
+router.get('/actor_rating', (req, res)=> {
+    dao.findActorByProgramRating(req, res, dao.table)
+
+})
+
 /** COUNT ALL ACTOR */
 router.get('/count', (req, res) => {
-    
     dao.countAll(req, res, 'actor')  /*count all rows in actor table */
 })
 
@@ -19,9 +23,6 @@ router.get('/search/:col/:value', (req, res)=> {
     const { col, value} = req.params
     dao.search(res, dao.table, col, value)
 })
- /**uniq findby rating */
-
-/**uniqfind by format */
 
 /* HTTP://LOCALHOST:2025/API/ACTOR/:ID */ /* SORT ACTORS BY COLUMN */
 router.get('/sort/:sorter', (req, res)=> {

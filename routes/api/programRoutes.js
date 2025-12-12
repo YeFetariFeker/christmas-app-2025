@@ -20,6 +20,11 @@ router.get('/count', (req, res) => {
     dao.countAll(req, res, dao.table)  
 })
 
+/** FIND PROGRAM BY YR_RELEASED */
+router.get('/year', (req, res)=> {
+    dao.findProgramByYr_released(req, res, dao.table)
+})
+
 /** SEARCH PROGRAM BY TITLE => http://localhost:2025/api/program/search/title/Home%20Alone **/
 router.get('/search/:column/:value', (req, res)=> {
     const { column, value} = req.params
@@ -27,12 +32,11 @@ router.get('/search/:column/:value', (req, res)=> {
 })
 
 
-
 /** GET PROGRAM BY PRODUCTION_ID => http://localhost:2025/api/program/production_id/7  **/
 router.get('/production_id/:id', (req, res) => {
     const id = req.params.id;
-    dao.findProgramByProductionId(req, res, dao.table, id);
-});
+    dao.findProgramByProductionId(req, res, dao.table, id)
+})
 
 
 /** SORT PROGRAM BY RATING  =>  HTTP://LOCALHOST:2025/API/PROGRAM/RATING */

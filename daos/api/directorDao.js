@@ -29,10 +29,7 @@ const directorDao = {
         con.query(sql, [first_name], (error, rows)=> {
             queryAction(res, error, rows, 'director')
         })
-    },
-
-    
+    }    
 }
- /**findBy, findBY... */
 
 module.exports = directorDao

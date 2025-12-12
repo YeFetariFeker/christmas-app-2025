@@ -17,8 +17,7 @@ const daoCommon = {
         )         
     },
 
-   
-    
+      
     /** FIND ACTOR BY PROGRAM RATING */
     findActorByProgramRating: (req, res, table)=> {
 
@@ -102,7 +101,7 @@ const daoCommon = {
         )
     },
 
-           
+          
     /*******POST CREATE ******/
 
     create: (req, res, table)=> {
@@ -125,9 +124,9 @@ const daoCommon = {
                 value,
                 (error, dbres)=> {
                     if (!error){
-                        res.json({
-                            last_id: dbres.insertId
-                        })
+                        // res.json({
+                        //     last_id: dbres.insertId
+                        // })
                         /** instead of JSON response, render the success page */
                         console.log(dbres)
                         res.render('pages/success', {
@@ -190,53 +189,9 @@ const daoCommon = {
                 }
            )
         }
-    },
-
-    /*************************
-     * CUSTOM QUERY METHODS
-     *************************/
-
+    }             
     
-
-    /** FIND ACTOR BY PROGRAM RATING **/
-    // findActorByProgramRating: (req, res, table)=> {
-    //     const { rating } = req.query
-
-    //     const sql = `SELECT a.* FROM ${table} a 
-    //     JOIN program_to_actor pa ON a.actor_id = pa.actor_id
-    //     JOIN program p ON pa.program_id = p.program_id
-    //     WHERE p.rating = ?;`
-
-    //     connect.query(sql, [rating], (error, rows)=> {
-    //         queryAction(res, error, rows, table)
-    //     })
-    // },
-
-   
-
-     /** FIND DIRECTOR BY PROGRAM RATING **/
-    // findDirectorByProgramRating: (req, res, table)=> {
-    //     const { rating } = req.query
-
-    //     const sql = `SELECT d.* FROM ${table} a 
-    //     JOIN program_to_director pd ON d.director_id = pd.direcctor_id
-    //     JOIN program p ON pd.program_id = p.program_id
-    //     WHERE p.rating = ?;`
-
-    //     connect.query(sql, [rating], (error, rows)=> {
-    //         queryAction(res, error, rows, table)
-    //     })
-    // },
-
-    
-
-   
-         
-        
-       
-       
       
-    
 
 
 }

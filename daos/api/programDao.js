@@ -1,6 +1,5 @@
 const con = require('../../config/dbconfig')
 const { queryAction } = require('../../helpers/queryAction');
-const { findDirectorByProgramRating } = require('../common/daoCommon');
 
 const programDao = {
 
@@ -31,6 +30,19 @@ const programDao = {
             queryAction(res, error, rows, table)
         })
     },
+
+    findProgramByYr_released: (req, res, table)=> {
+
+       const query = req.query ? req.query : {} 
+       const yr_released = query.year || '2003'
+
+       const sql = `SELECT * FROM ${table} WHERE yr_released = ${yr_released};`
+
+       con.execute(sql, (error, rows)=> queryAction(res, error, rows, 'program'))
+
+    }
+
+    
         
 
 }    
