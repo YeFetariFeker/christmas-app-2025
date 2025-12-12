@@ -1,0 +1,57 @@
+<%- include('../partials/header') %>
+
+<main class="main" id="main">
+    <div class="container">
+
+        <!-- SEARCH FORM -->
+        <form action="/program/search" method="GET" class="d-flex justify-content-center mt-3 mb-4">
+            <input
+                type="text"
+                name="q"
+                class="form-control w-50"
+                placeholder="Search program..."
+                required
+            >
+            <button class="btn btn-primary ms-2" type="submit">Search</button>
+        </form>
+
+        <!-- Program Cards -->
+        <div class="row row-cols-1 row-cols-md-3 g-4">
+            <% programs.forEach(program => {%>
+                <div class="col">
+                    <div class="card p-3 shadow-sm">
+
+                        <!-- Program Title -->
+                        <h4><%= program.title %> (<%= program.yr_released %>) </h4>
+
+                        <!-- Program Images -->
+                        <% if (program.img_url) { %> 
+                            <img src="/image/christmasProgram/<%= program.img_url %>" alt="<%= program.title %>" class="img-fluid mb-2"> <% } %>
+
+                        <!-- Program Runtime -->
+                         <p>Runtime: <%= program.runtime %> </p>
+
+                         <!-- Program Format -->
+                         <p>Format: <%= program.format %></p>
+
+                        <!-- Program Ratings -->
+                         <p>Program Rating: <%= program.program_rating %></p>
+                         
+                         <!-- Program programRating -->
+                          <p>Rating: <%= program.rating %></p>
+
+                        <!-- Program Description -->
+                         <p><%= program.description %></p>
+                    
+                        <!-- Program ID -->
+                         <p>Program ID: <%= program.program_id %> </p>
+
+                    </div>
+                </div>
+            <% }) %>
+        </div>
+
+    </div>
+</main>
+
+<%- include('../partials/footer') %>

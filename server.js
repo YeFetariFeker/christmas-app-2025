@@ -25,6 +25,9 @@ server.use(cors())
 server.use(express.json())
 server.use(express.urlencoded({ extended: true}))
 
+/*** SETTING EJS AS MY VIEW ENGINE ***/
+server.set('view engine', 'ejs')
+
 /* LOCALHOST: 2025 */
 server.use('/', router)
 

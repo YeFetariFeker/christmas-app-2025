@@ -1,0 +1,41 @@
+<%- include('../partials/header') %>
+
+<div class="container mt-4">
+    <h2><%= program ? "Edit Program" : "Create Program" %></h2>
+
+    <form action="<%= program ? `/program/${program.program_id}/edit` : '/program/create' %>"
+          method="POST"
+          enctype="multipart/form-data"
+          class="mt-3">
+
+        <label>Title</label>
+        <input type="text" name="title" class="form-control"
+               value="<%= program ? program.title : '' %>" required>
+
+        <label>Year Released</label>
+        <input type="number" name="yr_released" class="form-control"
+               value="<%= program ? program.yr_released : '' %>">
+
+        <label>Runtime</label>
+        <input type="time" name="runtime" class="form-control"
+               value="<%= program ? program.runtime : '' %>">
+
+        <label>Format</label>
+        <select name="format" class="form-select">
+            <option value="animation" <%= program?.format === 'animation' ? 'selected' : '' %>>Animation</option>
+            <option value="stop-motion" <%= program?.format === 'stop-motion' ? 'selected' : '' %>>Stop-motion</option>
+            <option value="live-action" <%= program?.format === 'live-action' ? 'selected' : '' %>>Live-action</option>
+        </select>
+
+        <label>Description</label>
+        <textarea name="description" class="form-control"><%= program ? program.description : '' %></textarea>
+
+        <label>Image URL</label>
+        <input type="text" name="img_url" class="form-control"
+               value="<%= program ? program.img_url : '' %>">
+
+        <button class="btn btn-primary mt-3" type="submit">Save</button>
+    </form>
+</div>
+
+<%- include('../partials/footer') %>

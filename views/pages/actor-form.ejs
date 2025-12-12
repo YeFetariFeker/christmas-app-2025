@@ -1,0 +1,47 @@
+<%- include('../partials/header') %>
+
+    <main class="main" id="main">
+        <div class="container">
+            <h2 class="text-center text-capitalize">add an actor</h2>
+            <form 
+                action="http://localhost:2025/api/actor/create" 
+                method="post"
+                class="form"
+                id="actorForm"
+            >
+            <div class="row mb-3">
+                <div class="col">
+                    <label for="first_name" class="form-label">
+                        first name
+                    </label>
+                    <input 
+                        type="text"
+                        id="first_name" 
+                        name="first_name"
+                        class="form-control"
+                    />            
+                </div>
+                <div class="col">
+                    <label for="last_name" class="form-label">              
+                        last name              
+                    </label>
+                    <input 
+                        type="text"
+                        id="last_name" 
+                        name="last_name"
+                        class="form-control"
+                    /> 
+                </div>
+            </div>
+            <button
+                class="btn btn-primary"
+                type="submit"
+                role="button"                    
+            >
+            Add Actor
+        </button>
+      </form>
+    </div>    
+ </main>
+
+<%- include('../partials/footer') %>

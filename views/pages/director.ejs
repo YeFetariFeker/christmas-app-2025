@@ -1,0 +1,37 @@
+<%- include('../partials/header') %>
+
+<main class="main" id="main">
+    <div class="container">
+
+        <!-- SEARCH FORM -->
+        <form action="/director/search" method="GET" class="d-flex justify-content-center mt-3 mb-4">
+            <input
+                type="text"
+                name="q"
+                class="form-control w-50"
+                placeholder="Search director..."
+                required
+            >
+            <button class="btn btn-primary ms-2" type="submit">Search</button>
+        </form>
+
+        <!-- Director Cards -->
+        <div class="row row-cols-1 row-cols-md-3 g-4">
+            <% directors.forEach(director => { %>
+                <div class="col">
+                    <div class="card p-3 shadow-sm">
+                        <!-- Director First and Last Name -->
+                        <h4><%= director.first_name %> <%= director.last_name %></h4>
+                                                        
+                        <!-- Director ID -->
+                         <p>Director ID: <%= director.director_id %> </p>
+                        <!-- <a href="/director/<%= director.id %>" class="btn btn-primary w-100">View</a> -->
+                    </div>
+                </div>
+            <% }) %>
+        </div>
+
+    </div>
+</main>
+
+<%- include('../partials/footer') %>

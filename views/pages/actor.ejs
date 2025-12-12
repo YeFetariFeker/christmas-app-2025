@@ -1,0 +1,45 @@
+<%- include('../partials/header') %>
+
+<main class="main" id="main">
+    <div class="container">
+
+        <!-- SEARCH FORM -->
+        <form action="/actor/search" method="GET" class="d-flex justify-content-center mt-3 mb-4">
+            <input
+                type="text"
+                name="q"
+                class="form-control w-50"
+                placeholder="Search actor..."
+                required
+            >
+            <button class="btn btn-primary ms-2" type="submit">Search</button>
+        </form>
+
+        <!-- Actor Cards -->
+        
+        <div class="row row-cols-1 row-cols-md-3 g-4">
+            <% actors.forEach(actor => {%>
+                <div class="col">
+                    <div class="card p-3 shadow-sm">
+
+                        <!-- Actor Images -->
+                        <% if (actor.img_url) { %> 
+                            <img src="/image/christmasActors/<%= actor.img_url %>" alt="<%= title %>" class="img-fluid mb-2"> <% } %>
+
+                        <!-- actor First Name -->
+                         <p>Actor first name: <%= actor.first_name %> </p>
+
+                         <!-- Actor Last Name -->
+                         <p>Actor last name: <%= actor.last_name %></p>
+                    
+                        <!-- actor ID -->
+                         <p>Actor ID: <%= actor.actor_id %> </p>
+
+                    </div>
+                </div>
+            <% }) %>
+        </div>
+    </div>
+</main>
+
+<%- include('../partials/footer') %>

@@ -1,11 +1,180 @@
-### GET findAll
-#GET http://localhost:2025/api/actor
+### GET PROGRAM TABLE findAll 
+ #http://localhost:2025/api/program
+
+### GET PROGRAM findProgramByProductionId
+#GET http://localhost:2025/api/program/production_id/7 
+
+### GET PROGRAM find by rating 
+#GET http://localhost:2025/api/program/sort/rating
+
+### GET PROGRAM COUTN ALL
+#GET http://localhost:3000/api/program/count
+
+
+### GET PROGRAM SORT BY YR_RELEASED
+#GET http://localhost:2025/api/program/sort/yr_released
+
+### GET PROGRAM count ??  200 OK but the message is error 
+# GET http://localhost:2025/api/program/count
+
+### PROGRAM FINDBYID (200 ok but error message on POSTMAN)
+#GET http://localhost:2025/api/program/7
+
+### PROGRAM SORT BY TITLE
+# GET http://localhost:2025/api/program/sort/title
+
+### GET PROGRAM RARING
+GET http://localhost:2025/api/program/rating/PG-13
+
+### GET PROGRAM RATING
+# GET http://localhost2025/api/program/rating/:rating
+
+### GET PROGRAM FORMAT
+#GET http://localhost:2025/api/program/format/:format
+
+### GET PROGRAM SEARCH BY TITLE
+# GET http://localhost:2025/api/program/search/title/elf
+
+
+
+###### POST PROGRAM  #####
+
+### POST PROGRAM create// but this is not creating new it just sohw existing id
+#POST http://localhost:2025/api/program/id/7
+
+### POST PROGRAM create
+POST http://localhost:2025/api/program/create
+
+### GET PROGRAM SEARCH => /search/:column/:value
+#GET  http://localhost:2025/api/program/search?q=elf
+
+### PATCH/PUT PROGRAM UPDATE => 
+# USE (PATCH to update only specific fields of a resource and PUT to repalce the entiere resource with new data)EXAPLE: include only the field you want to change // Always use PATCH (or PUT) with the ID in the URL the fields to update go in the request body not the URL
+# http://localhost:3000/api/program/update/5
+
+# ## If you want to update program with method PATCH 
+# {
+#     "title": "will's Holiday Adveneture",
+#     "runtime": 125
+# }
+
+
+#################  GET ACTOR TABLE  ################
+
+### GET ACTOR findAll
+# GET http://localhost:2025/api/actor
 
 ### GET findById single actor by id
-#GET http://localhost:2025/api/actor/7
+# GET http://localhost:2025/api/actor/7
 
-### GET sort/by name
-http://localhost:2025/api/actor/sort/last_name
+###  GET ACTOR FIND ACTOR BY PROGRAM RATING ? /ERROR 404
+ #GET http://localhost:2025/api/actor/program/rating/7
+
+### GET sort by id for single actor id 7 not working
+#http://localhost:2025/api/actor/sort/1
+
+### GET ACTOR sortByLast_name
+ #GET http://localhost:2025/api/actor/sort/last_name
+
+# GET ACTOR   actorByForm  // 200 on .REST and POSTMAN 200 but html
+ #  GET http://localhost:2025/actor-form
+ 
+# GET ACTOR countAllActor 
+# GET http://localhost:2025/api/actor/count
+
+
+
+###### POST ACTOR  #####
+
+### GET ACTOR search
+#GET  http://localhost:2025/api/actor/search?q=Will
+
+### POST ACTOR create
+# POST http://localhost:2025/api/actor/create
+
+### GET ACTOR update
+
+# POST http://loclahost:2025/api/actor/create
+#  Content-Type: application/json
+# {
+#     "first_name": "rachel",
+#     "last_name": "biser"
+# }
+
+# PATCH  http://loclahost:2025/api/actor/update
+#  Content-Type: application/json
+# {
+#     "first_name": "rachel",
+#     "last_name": "biser"
+# }
+
+#################  GET DIRECTOR TABLE  ################
+### GET DIRECTOR findAll
+# GET http://localhost:2025/api/director
+
+### GET findById single director by id
+# GET http://localhost:2025/api/director/7
+
+ ### GET DIRECTOR COUNT ALL DIRECTOR  countAll 
+ # GET http://localhost:2025/api/actor/count
+
+ ### GET DIRECTOR sortByLast_name
+ # GET http://localhost:2025/api/director/sort/last_name
+
+
+#################  GET PRODUCTION TABLE  ################
+
+### GET PRODUCTION  findAll
+# GET http://localhost:2025/api/director
+
+### GET PROUCTION ID findById single 
+# GET http://localhost:2025/api/director/7
+
+ ### GET DIRECTOR COUNT ALL DIRECTOR  countAll 
+ # GET http://localhost:2025/api/actor/count
+
+### FIND PRODUCTION BY RATING 
+ #GET http://localhost:2025/api/production/rating?rating=7.0
+
+
+
+
+
+#################  GET STREAMING_PLATFORM TABLE  ################
+
+### FIND STREAMING PLATFORM BY NAME
+ #GET http://localhost:2025/api/streaming_platform
+
+### FIND STREAMING PLATFORM BY NAME  / ERROR 500???
+#GET http://localhost:2025/api/streaming_platform/search/name/Netflix
+
+
+### GET FIND STREAMING PLATFORM BY ID / ERROR 404???
+ #GET http://localhost:2025/api/streaming_platform_id/7
+
+### GET FIND STREAMING PLATFORM BY PROGRAM RATING ? ERROR 404
+#GET http://localhost:2025/api/streaming_platform/program/rating?rating=PG
+
+
+
+
+################# SEARCH #########################
+
+#GET /api/actor/search/first_name/will
+#GET /api/director/search/last_name/Smith
+#GET /api/program/search/title/Home Alone
+
+#GET /api/<table>/search/:column/:value
+
+### FIND PRODUCTION BY PROGRAM RATING
+# GET /production/by-program-rating?rating=7.5
+
+### FIND PRODUCTION BY RATING
+# GET /production?rating=7.5
+
+# ################################################################################
+
+
 
 
 

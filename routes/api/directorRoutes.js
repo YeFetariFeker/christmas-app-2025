@@ -1,27 +1,25 @@
 const router = require('express').Router()
 //const { countAll } = require('../../daos/common/daoCommon'); // import method
-const { actorDao: dao} = require('../../daos/dao')
+const { directorDao: dao} = require('../../daos/dao')
 
 /* HTTP://LOCALHOST:2025/API/ACTOR */ /* GET All ACTOR */
-router.get('/', (req, res)=> {
+router.get('/', (req, res)=> {    
     dao.findAll(req, res, dao.table)
-
 })
 
 /** COUNT ALL ACTOR */
-router.get('/count', (req, res) => {
-    
-    dao.countAll(req, res, 'actor')  /*count all rows in actor table */
+router.get('/count', (req, res) => {    
+    dao.countAll(req, res, 'director')  /*count all rows in actor table */
 })
 
-/** SEARCH FUCNTION -> http://actor/search/:col/:value **/
+/** SEARCH FUCNTION -> http://director/search/:col/:value **/
 router.get('/search/:col/:value', (req, res)=> {
     const { col, value} = req.params
     dao.search(res, dao.table, col, value)
 })
- /**uniq findby rating */
 
-/**uniqfind by format */
+/** uniq findBy */
+/** uniq finby */
 
 /* HTTP://LOCALHOST:2025/API/ACTOR/:ID */ /* SORT ACTORS BY COLUMN */
 router.get('/sort/:sorter', (req, res)=> {
@@ -48,4 +46,3 @@ router.patch('/update/:id', (req, res)=> {
 //ROUTER.GET COUNTALL, SEARCH
 
 module.exports = router
-

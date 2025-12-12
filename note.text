@@ -1,0 +1,43 @@
+<%- include('../partials/header) %>
+
+    <main class="main" id="main">
+        <div class="container">
+            <h2 class="text-cetner text-capitalize">add an director</h2>
+            <form action="http://loclahost:2025/api/director/create" 
+               method="post"
+               class="form"
+               id="directorForm"
+            >
+            <div class="row mb-3">
+                <div class="col">
+                    <label for="firstName" class="form-label">
+                        first name
+                    </label>
+                    <input 
+                        type="text"
+                        id="firstName" 
+                        name="firstName"
+                        class="form-control"
+                    />            
+                </div>
+                <div class="col">
+                    <label for="lastName" class="form-label">              
+                        last name              
+                    </label>
+                    <input 
+                        type="text"
+                        id="lastName" 
+                        name="lastName"
+                        class="form-control"
+                    > 
+                </div>
+                    <button
+                        class="btn btn-primary"
+                        type="submit"
+                        role="button"                    
+                    >Add Director</button>
+            </form>
+        </div>
+    </main>
+
+<%- include('../partials/footer) %>

@@ -1,4 +1,5 @@
 const queryAction =(obj, e, r, t)=> {
+    
     if (!e) {
         if (r.length === 1) {
             obj.json(...r)
@@ -10,7 +11,7 @@ const queryAction =(obj, e, r, t)=> {
         obj.json({
             "message": 'error',
             'table': `${t}`,
-            'error': error
+            'error': e
         })
     }
 }
