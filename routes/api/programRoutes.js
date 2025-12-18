@@ -5,8 +5,8 @@ const { programDao: dao} = require('../../daos/dao')
 
 
 /**GET ALL PROGRAMS =>  HTTP://LOCALHOST:2025/API/PROGRAM **/
-router.get('/', (req, res)=> {
-    dao.findAll(req, res, dao.table)
+router.get('/', (req, res)=> { /*router.get handels api/program routes calls dao */
+    dao.findAll(req, res, dao.table) /* fetch data from db */
 
 })
 
@@ -45,18 +45,18 @@ router.get('/sort/:sorter', (req, res)=> {
 })
 
 
-/**** CREATE A NEW PROGRAM *****/
-router.post('/create', (req, res)=> {
-    dao.create(req, res, dao.table)
-})
+// /**** CREATE A NEW PROGRAM *****/
+// router.post('/create', (req, res)=> {
+//     dao.create(req, res, dao.table)
+// })
 
-/**** UPDATE A PROGRMA *****/ 
-router.patch('/update/:id', (req, res)=> {
-    dao.update(req, res, dao.table)
-})
+// /**** UPDATE A PROGRMA *****/ 
+// router.patch('/update/:id', (req, res)=> {
+//     dao.update(req, res, dao.table)
+// })
 
 /** FIND PROGRAM BY ID /** CATCH ALL - MUST BE LAST =>  HTTP://LOCALHOST:2025/API/:ID  **/
-router.get('/id/:id', (req, res)=> {
+router.get('/:id', (req, res)=> {
     dao.findById(res, dao.table, req.params.id)
 })
 

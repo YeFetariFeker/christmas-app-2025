@@ -1,8 +1,8 @@
 const daoCommon = require('./common/daoCommon')
 
-const programDao = {
-    ...daoCommon,
-    ...require('./api/programDao')
+const programDao = {  /* Declares a new constant programDao which will be an obj  */
+    ...daoCommon,   /* Using spread operator to copy all properties and metods from daoCommon obj into programDao */
+    ...require('./api/programDao')  /* Require './api/programDao' and spreads all its exported properties into this obj*/
 }
 
 const actorDao = {

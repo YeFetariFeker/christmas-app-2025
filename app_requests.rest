@@ -1,180 +1,141 @@
-### GET PROGRAM TABLE findAll 
- #http://localhost:2025/api/program
+#####   PROGRAM TABLE  ######
 
-### GET PROGRAM findProgramByProductionId
-#GET http://localhost:2025/api/program/production_id/7 
+### GET findAll
+# http://localhost:2025/api/program
 
-### GET PROGRAM find by rating 
-#GET http://localhost:2025/api/program/sort/rating
+### GET findProgramByProductionId
+# GET http://localhost:2025/api/program/production_id/7 
 
-### GET PROGRAM COUTN ALL
-#GET http://localhost:3000/api/program/count
-
-
-### GET PROGRAM SORT BY YR_RELEASED
-#GET http://localhost:2025/api/program/sort/yr_released
-
-### GET PROGRAM count ??  200 OK but the message is error 
+### GET countAll
 # GET http://localhost:2025/api/program/count
 
-### PROGRAM FINDBYID (200 ok but error message on POSTMAN)
-#GET http://localhost:2025/api/program/7
+### GET sortByYrReleased
+# GET http://localhost:2025/api/program/sort/yr_released
 
-### PROGRAM SORT BY TITLE
-# GET http://localhost:2025/api/program/sort/title
+### sortByTitle
+#GET http://localhost:2025/api/program/sort/title
 
-### GET PROGRAM RARING
-#GET http://localhost:2025/api/program/rating/PG-13
+###FIND ACTORS BY PROGRAM TITLE => findActorByProgramTitle
+# GET http://localhost:2025/api/actor/title/home%20alone
 
-### GET PROGRAM RATING
-# GET http://localhost2025/api/program/rating/:rating
+### GET format
+# GET http://localhost:2025/api/program/format/:format
 
-### GET PROGRAM FORMAT
-#GET http://localhost:2025/api/program/format/:format
+#######    ACTOR TABLE #######
 
-### GET PROGRAM SEARCH BY TITLE
-# GET http://localhost:2025/api/program/search/title/elf
+### GET findAll
+ # GET http://localhost:2025/api/actor
 
-
-
-###### POST PROGRAM  #####
-
-### POST PROGRAM create// but this is not creating new it just sohw existing id
-#POST http://localhost:2025/api/program/id/7
-
-### POST PROGRAM create
-#POST http://localhost:2025/api/program/create
-
-### GET PROGRAM SEARCH => /search/:column/:value
-#GET  http://localhost:2025/api/program/search?q=elf
-
-### PATCH/PUT PROGRAM UPDATE => 
-# USE (PATCH to update only specific fields of a resource and PUT to repalce the entiere resource with new data)EXAPLE: include only the field you want to change // Always use PATCH (or PUT) with the ID in the URL the fields to update go in the request body not the URL
-# http://localhost:3000/api/program/update/5
-
-# ## If you want to update program with method PATCH 
-# {
-#     "title": "will's Holiday Adveneture",
-#     "runtime": 125
-# }
-
-
-#################  GET ACTOR TABLE  ################
-
-### GET ACTOR findAll
-# GET http://localhost:2025/api/actor
-
-### GET findById single actor by id
+### GET findById
 # GET http://localhost:2025/api/actor/7
 
-###  GET ACTOR FIND ACTOR BY PROGRAM RATING 
- GET http://localhost:2025/api/actor/actor_rating
+### GET findActorByProgramRating
+# GET http://localhost:2025/api/actor/actor_rating
 
-### GET sort by id for single actor id 7 not working
-#http://localhost:2025/api/actor/sort/1
+### GET sortBYId
+# http://localhost:2025/api/actor/sort/1
 
-### GET ACTOR sortByLast_name
- #GET http://localhost:2025/api/actor/sort/last_name
+### GET sortByLast_name
+# GET http://localhost:2025/api/actor/sort/last_name
 
-# GET ACTOR   actorByForm  // 200 on .REST and POSTMAN 200 but html
- #  GET http://localhost:2025/actor-form
+# GET countAllActor 
+# GET http://localhost:2025/api/actor/count
+
+### GET actorByForm 
+# GET http://localhost:2025/actor-form
  
-# GET ACTOR countAllActor 
-#GET http://localhost:2025/api/actor/count
+### findActorByProgramTitle
+# GET http://localhost:2025/api/actor/title/home%20alone
+
+### findByLastName
+ #GET http://localhost:2025/api/actor/last_name/cage
+
+### sortByLastName 
+# GET http://localhost:2025/api/actor/sort/last_name
+
+### countAll
+# GET http://localhost:2025/api/actor/count
+
+### SEARCH ACTORs => findActorByProgramRating
+# GET http://localhost:2025/api/actor/search/program_rating/PG-13
 
 
 
-###### POST ACTOR  #####
+### findAll
+# GET http://localhost:2025/api/actor
 
-### GET ACTOR search by first name
-#GET  http://localhost:2025/api/actor/search?q=queen
+### GET findById
+# GET http://localhost:2025/api/actor/7
 
-### POST ACTOR create
+
+######  POST ######
+############ POST ACTOR #####################
+### POST create /add new actor
 # POST http://localhost:2025/api/actor/create
-
-### GET ACTOR update
-
-# POST http://loclahost:2025/api/actor/create
-#  Content-Type: application/json
 # {
-#     "first_name": "rachel",
-#     "last_name": "biser"
+#    "first_name": "eddie",
+#    "last_name": "murphy"
 # }
 
-# PATCH  http://loclahost:2025/api/actor/update
-#  Content-Type: application/json
+
+############ UPDATE ACTOR ###################
+### UPDATE ACTOR BY ID 141
+# PATCH http://localhost:2025/api/actor/update/141
+
 # {
-#     "first_name": "rachel",
-#     "last_name": "biser"
+#     "first_name": "kevin",
+#     "last_name": "hart"
 # }
 
-#################  GET DIRECTOR TABLE  ################
-### GET DIRECTOR findAll
+
+########  DIRECTOR TABLE  ###########
+### findAll
 # GET http://localhost:2025/api/director
 
-### GET findById single director by id
+### GET findById 
 # GET http://localhost:2025/api/director/7
 
- ### GET DIRECTOR COUNT ALL DIRECTOR  countAll 
- # GET http://localhost:2025/api/actor/count
+ ### countAll 
+# GET http://localhost:2025/api/director/count
 
- ### GET DIRECTOR sortByLast_name
-  #GET http://localhost:2025/api/director/sort/last_name
+ ### sortByLast_name
+# GET http://localhost:2025/api/director/sort/last_name
+
+### findDirectorByProgramYrReleased 
+ # GET http://localhost:2025/api/director/year?year=1990
 
 
-#################  GET PRODUCTION TABLE  ################
+
+#################  PRODUCTION TABLE  ################
 
 ### GET PRODUCTION  findAll
-# GET http://localhost:2025/api/director
+#GET http://localhost:2025/api/director
 
 ### GET PROUCTION ID findById single 
 #GET http://localhost:2025/api/director/7
 
- ### GET DIRECTOR COUNT ALL DIRECTOR  countAll 
- # GET http://localhost:2025/api/actor/count
-
-### FIND PRODUCTION BY RATING 
- #GET http://localhost:2025/api/production/rating?rating=7.0
+### GET PROCUTION BY NAME 
+# GET http://localhost:2025/api/production?production_name=cinet
 
 
-
-
-
-#################  GET STREAMING_PLATFORM TABLE  ################
-
-### FIND STREAMING PLATFORM BY NAME
- #GET http://localhost:2025/api/streaming_platform
-
-### FIND STREAMING PLATFORM BY NAME  / ERROR 500???
-#GET http://localhost:2025/api/streaming_platform/search/name/Netflix
-
-
-### GET FIND STREAMING PLATFORM BY ID / ERROR 404???
- #GET http://localhost:2025/api/streaming_platform_id/7
-
-### GET FIND STREAMING PLATFORM BY PROGRAM RATING ? ERROR 404
-#GET http://localhost:2025/api/streaming_platform/program/rating?rating=PG
+### GET PRODCUTION BY NAME
+#GET http://localhost:2025/api/production
 
 
 
+################ STREAMING  #####################
 
-################# SEARCH #########################
+### GET FIND STREMING BY ID 404
+ #GET http//localhost:2025/api/streaming_platform/3
 
-#GET /api/actor/search/first_name/will
-#GET /api/director/search/last_name/Smith
-#GET /api/program/search/title/Home Alone
+### GET ALL STREAMING COUNT  
+# GET http://localhost:2025/api/streaming_platform/count
 
-#GET /api/<table>/search/:column/:value
+### FIND STREAMING  BY RATING 404
+# GET http://localhost:2025/api/streaming/rating?rating=7.0
 
-### FIND PRODUCTION BY PROGRAM RATING
-# GET /production/by-program-rating?rating=7.5
-
-### FIND PRODUCTION BY RATING
-# GET /production?rating=7.5
-
-# ################################################################################
-
-
+### GET STREAMING_PLATFORM BY NAME 
+#GET http://localhost:2025/api/streaming_platform?by_platform/plex
 
 
 

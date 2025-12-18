@@ -1,22 +1,21 @@
-const express = require('express')
-const router = express.Router()
-const PORT = process.env.PORT || 2025
+const express = require('express')  /*Import express */
+const router = express.Router()   /* Creates a new express routes */
+const PORT = process.env.PORT || 2025  /* Sets the port number */
 
-const axios = require('axios')
-router.use(express.static('public'))
+const axios = require('axios')  /* Imports Axios for making HTTP request to APIs feach calls */
+router.use(express.static('public'))  /* Serves static files (CSS, images, JS) from the public */
 
-/*** HOME PAGE => http://localhost:2025  ***/
-router.get('/', (req, res)=> {
-    res.render('pages/home', {
+/******* HOME PAGE ******/
+router.get('/', (req, res)=> {  /* Defines a GET route for the root URL(/) */
+    res.render('pages/home', {  /* Renders the home view templete */
         title: 'christmas-app home',
         name:  "Tigi's Christmas App"
     })
 })
 
-
-/** ACTOR FORM  => http://localhost:/2025/actor-form  **/
-router.get('/actor-form', (req, res)=> {
-    res.render('pages/actor-form', {
+/******* ACTOR FORM *******/
+router.get('/actor-form', (req, res)=> { /* Get route for the actor page */
+    res.render('pages/actor-form', {   /* Renders the actor form template */
         title: 'actor form',
         name: 'actor-form'
     })
@@ -53,10 +52,11 @@ router.get('/streaming_platform-form', (req, res)=> {
 })
 
 
-/** API ROOT => http://localhost:2025/api **/
-router.get('/api', (req, res)=> {
+/** API ROOT ROUTE=> http://localhost:2025/api **/
+router.get('/api', (req, res)=> {  /* GET route for the API root */
    // res.send('christmas api')
-   res.json({
+   res.json({ /* Sends a JSON response listing available API endpoints */
+         /* Dyanmically builds endpoint URLs using the port number */
         'All Programs': `http://localhost:${PORT}/api/program`,
         'All Actors': `http://localhost:${PORT}/api/actor`,
         'All Directors': `http://localhost:${PORT}/api/director`,
@@ -65,59 +65,54 @@ router.get('/api', (req, res)=> {
     })   
 })
 
-/** API ROUTES **/
+/********** API ROUTES **********/
+/* Connectes API URLs to their routes and allow browser to talk to db */
 router.use('/api/program', require('./api/programRoutes'))
 router.use('/api/actor', require('./api/actorRoutes'))
 router.use('/api/director', require('./api/directorRoutes'))
 router.use('/api/production', require('./api/productionRoutes'))
 router.use('/api/streaming_platform', require('./api/streaming_platformRoutes'))
 
-/** PROGRAM => http://localhost:2025/program */
-router.get('/program', (req, res)=>{
-    const url = 'http:localhost:2025/api/program'
-    axios.get(url).then(resp => {
-        res.render('pages/program', {
+/** PROGRAM LIST PAGE => http://localhost:2025/program */
+router.get('/program', (req, res)=>{  /* GET routes for viewing programs */
+    const url = 'http://localhost:2025/api/program'
+    axios.get(url).then(resp => { /* Fetches program data from the API */
+        res.render('pages/program', {  /* Renders the program page with API data */
             title: 'program',
             name: 'Christmas Program',
             endpoint: 'program',
-            programs: resp.data
-
+            programs: resp.data   /* Passes program data to the templete */
         })
-
     })
 })
 
-/** PROGRAM => http://localhost:2025/program */
+/** ACTOR LIST PAGE => http://localhost:2025/actor */
 router.get('/actor', (req, res)=>{
-    const url = 'http:localhost:2025/api/actor'
+    const url = 'http://localhost:2025/api/actor'
     axios.get(url).then(resp => {
         res.render('pages/actor', {
             title: 'actor',
             name: 'Christmas Program Actor',
             endpoint: 'actor',
             actors: resp.data
-
         })
-
     })
 })
 
-/** PROGRAM => http://localhost:2025/program */
-router.get('/director', (req, res)=>{
+/** DIRECTOR LIST PAGE => http://localhost:2025/director */
+router.get('/director', (req, res)=>{      /* GET route for director list page  */
     const url = 'http:localhost:2025/api/director'
     axios.get(url).then(resp => {
         res.render('pages/director', {
             title: 'director',
             name: 'Christmas Program Director',
             endpoint: 'director',
-            directors: resp.data
-
+            directors: resp.data  /* Passes director data to the view */
         })
-
     })
 })
 
-/** PROGRAM => http://localhost:2025/program */
+/** PRODUCTION LIST PAGE => http://localhost:2025/production */
 router.get('/production', (req, res)=>{
     const url = 'http:localhost:2025/api/production'
     axios.get(url).then(resp => {
@@ -132,7 +127,7 @@ router.get('/production', (req, res)=>{
     })
 })
 
-/** PROGRAM => http://localhost:2025/program */
+/** STREAMING PLATFORM LIST PAGE => http://localhost:2025/streaming_platform */
 router.get('/streaming_platform', (req, res)=>{
     const url = 'http://localhost:2025/api/streaming_platform'
     axios.get(url).then(resp => {
@@ -148,11 +143,11 @@ router.get('/streaming_platform', (req, res)=>{
     })
 })
 
-/** ERROR HANDLING PAGE **/
-router.use((req, res, next)=> {
+/** ERROR HANDLING(404) PAGE **/
+router.use((req, res, next)=> {  /* Catch-all middleware for unmatche routes */
     res.status(404)
     //.send('<h1>404 Error This page does not exist </h1>')
-    .render('pages/error', {
+    .render('pages/error', {  /* Renders the error page */
         title: 'Error Page',
         name: 'Error'
     })

@@ -10,12 +10,17 @@ router.get('/', (req, res)=> {
 /** FIND PDIRECTOR BY RATING => 
  * http://localhost:2025/api/director/program/rating/PG-13 **/
 router.get('/rating', (req, res)=> {
-    dao.findByRating(req, res, dao.table)
+    dao.findDirectorByProgramRating(req, res, dao.table)
 })
 
 /** COUNT ALL ACTOR */
 router.get('/count', (req, res) => {    
     dao.countAll(req, res, 'director')  /*count all rows in actor table */
+})
+
+/* FIND DIRECTOR BY PROGRAM YR_RELEASED => http://localhost:2025/api/director/year?year=1990  */
+router.get('/year', (req, res)=> {
+    dao.findDirectorByProgramYrReleased(req, res)
 })
 
 /** SEARCH FUCNTION -> http://director/search/:col/:value **/
@@ -24,30 +29,15 @@ router.get('/search/:col/:value', (req, res)=> {
     dao.search(res, dao.table, col, value)
 })
 
-/** uniq findBy */
-/** uniq finby */
-
 /* HTTP://LOCALHOST:2025/API/ACTOR/:ID */ /* SORT ACTORS BY COLUMN */
 router.get('/sort/:sorter', (req, res)=> {
     dao.sort(res, dao.table, req.params.sorter)
-
 })
 
 /* HTTP://LOCALHOST:2025/API/:ID*/  /* GET ACTOR BY ID */
 router.get('/:id', (req, res)=> {
     dao.findById(res, dao.table, req.params.id)
 })
-
-// /*http://loclahost:2025/api/actor/create*/ /**** CREATE ACTOR*****/
-// router.post('/create', (req, res)=> {
-//     dao.create(req, res, dao.table)
-// })
-
-// /**** UPDATE ACTOR BY ID *****/ // if not working remove /:id from router.patch'/update/:id'
-// router.patch('/update/:id', (req, res)=> {
-//     dao.update(req, res, dao.table)
-// })
-
 
 
 module.exports = router

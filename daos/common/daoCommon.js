@@ -1,15 +1,15 @@
-const connect = require('../../config/dbconfig')
-const { queryAction } = require('../../helpers/queryAction')
+const connect = require('../../config/dbconfig') /*Imports db */
+const { queryAction } = require('../../helpers/queryAction') /*Imports a helper fnctin queryAction */
 //const { search } = require('../../routes/router')
 
 const daoCommon = {
     /* CREATE METHODS THAT WILL QUERY THE DATABASE */
     /******* FINDALL ******/
-    findAll: (req, res, table)=> {
+    findAll: (req, res, table)=> { /* findAll fetch data from database */
 
-        /*.QUERY(TAKES TWO ARGUMENTS 1ST  SQL QUERY, 2ND CALLBACK FUNC) */
+        /* .QUERY(TAKES TWO ARGUMENTS 1ST  SQL QUERY, 2ND CALLBACK FUNC) */
         connect.query(
-            `SELECT * FROM ${table};`,
+            `SELECT * FROM ${table};`,  /* SQL query that selects all col and row from specifc table */
             (error, rows)=> {
                 queryAction(res, error, rows, table)               
                 
@@ -17,34 +17,21 @@ const daoCommon = {
         )         
     },
 
-      
-    /** FIND ACTOR BY PROGRAM RATING */
-    findActorByProgramRating: (req, res, table)=> {
-
-        /*.QUERY(TAKES TWO ARGUMENTS 1ST  SQL QUERY, 2ND CALLBACK FUNC) */
-        connect.query(
-            `SELECT * FROM ${table};`,
-            (error, rows)=> {
-                queryAction(res, error, rows, table)               
-                
-            } 
-        )         
-    },
-
-    /***** COUNTALL - counts all rows in a table ****/   
+          
+    /***** COUNTALL:  counts all rows in a table ****/   
     countAll: (req, res, table) => {
 
-        const sql = `SELECT COUNT(*) AS total FROM ${table};`
-            connect.query(sql, (error, rows) => {
-                queryAction(res, error, rows, table)
+        const sql = `SELECT COUNT(*) AS total FROM ${table};` 
+            connect.query(sql, (error, rows) => {  /* Executes the count query */
+                queryAction(res, error, rows, table)  /* Sends the count result */
         })
     },
     
     /***** SEARCH *****/
-    search: (res, table, column, value)=> {
+    search: (res, table, column, value)=> {  /* Searchs a table by a column and value */
 
         /** prevent SQL INJECTION in column name **/
-        const allowedColumns = [ /**Add columns for each table **/
+        const allowedColumn = [ /**Add columns for each table **/
             'streaming_platform_name', 
             'streaming_platform_id',
             'title', 
@@ -59,24 +46,24 @@ const daoCommon = {
         ]
 
         /** VALIDATE IF THE COLUMN NAME IS ALLOWED **/
-        if (!allowedColumns.includes(column)){
-            return res.json({
+        if (!allowedColumn.includes(column)){
+            return res.json({  /* Stops execution and sends an error response */
                 error: true,
-                messge: `Invalid search column: ${column}`
+                message: `Invalid search column: ${column}`
             })
         }
         const sql = `SELECT * FROM ${table} WHERE ${column} LIKE ?;`
 
         connect.query(sql, [`%${value}%`],
             (error, rows)=> {
-                queryAction(res, error, rows, table)
+                queryAction(res, error, rows, table)  /* Sends search resluts */
             }
         )
     },
 
 
     /******* SORT ******/
-    sort: (res, table, sorter)=> {
+    sort: (res, table, sorter)=> { /* Sorts records by the given column */
         
         connect.query(
             `SELECT * FROM ${table} ORDER BY  ${sorter};`,
@@ -89,7 +76,7 @@ const daoCommon = {
     }, 
 
     /******* FINDBYID ******/
-    findById: (res, table, id)=> {
+    findById: (res, table, id)=> { /* Retrieves single record by its ID */
 
         connect.query(
             `SELECT * FROM ${table} WHERE ${table}_id = ${id};`,
@@ -103,36 +90,34 @@ const daoCommon = {
 
           
     /*******POST CREATE ******/
-
-    create: (req, res, table)=> {
+    create: (req, res, table)=> { /* Inserts a new row into the database */
         //console.log(req)
         //res.send('complete')
         // req.body => {}
 
-        if (Object.keys(req.body).length === 0) {
+        if (Object.keys(req.body).length === 0) { /* Checks if request body is empty */
             //object.key(obj) => array of keys
             return res.json({
                 "error": true,
-                "message": "No fields to create"
+                "message": "No fields to create"   /* Returns an error if no data was provided */
             })
         } else {
-            const fields = Object.keys(req.body)
-            const value = Object.values(req.body)
-
+            const fields = Object.keys(req.body) /* Retrieves column names */
+            const value = Object.values(req.body) /* Retrieves values */
+            /* fields.join(' = ? ') -> builds the string f_name = ?, l_n = ? */
           connect.execute(
-                `INSERT INTO ${table} SET ${fields.join(' = ?, ')} = ?;`,
+                `INSERT INTO ${table} 
+                SET ${fields.join(' = ?, ')} = ?;`,
                 value,
                 (error, dbres)=> {
                     if (!error){
-                        // res.json({
-                        //     last_id: dbres.insertId
-                        // })
+                       
                         /** instead of JSON response, render the success page */
                         console.log(dbres)
-                        res.render('pages/success', {
+                        res.render('pages/success', {  /* Renders a success page */
                             title: 'Success',
                             name: 'Success',
-                            last_id: dbres.insertId
+                            last_id: dbres.insertId 
                         })
                     } else {
                         console.log(`${table}Dao error:`, error)
@@ -152,13 +137,12 @@ const daoCommon = {
     /******* UPDATE ******/
     update: (req, res, table)=> {
 
-        //check if id == number
-        if (isNaN(req.params.id)){
+        if (isNaN(req.params.id)){ /* Checks if id is numerber */
             res.json({
                 "error": true,
-                "message": "Id must be a number"
+                "message": "Id must be a number"  /* Prevents invalid updates */
             })
-        } else if (Object.keys(req.body).length == 0) {
+        } else if (Object.keys(req.body).length == 0) {  /* Verify update dat exists */
             res.json({
                 "error": true,
                 "message": "No fields to update"
@@ -166,19 +150,18 @@ const daoCommon = {
 
         } else {
 
-            const fields = Object.keys(req.body)
-            const values = Object.values(req.body)
+            const fields = Object.keys(req.body) /* Retrieves column names */
+            const values = Object.values(req.body)  /* Retrieves values */
 
             connect.execute(
-                `UPDATE ${table} SET  ${fields.join(' =?, ')} = ? WHERE ${table}_id = ?;`,
-
-                [...values, req.params.id],
+                `UPDATE ${table} SET  ${fields.join(' =?, ')} = ? WHERE ${table}_id = ?;`, 
+                [...values, req.params.id],  /* Appends the ID to the parameter list */
                 (error, dbres)=> {
                     if (!error) {
                         //res.send(`Changed ${dbres.changedRows} row(s)`)
                         res.json({
                             "status": 'updated',
-                            "changedRows": dbres.changedRows
+                            "changedRows": dbres.changedRows /* Returns how many rows were updated */
                         })
                     } else {
                         res.json({
@@ -189,11 +172,8 @@ const daoCommon = {
                 }
            )
         }
-    }             
-    
-      
-
-
+    }           
+          
 }
 
 module.exports = daoCommon
